@@ -4,11 +4,11 @@ public class DigitalCommunicationSystem {
 
 	public static void main(String[] args) {
 		int loopsize = 1;
-//		int n = 100; // Anzahl Bits
-//		double p = 0.4; // Wahrscheinlichkeit, dass Bit 1 ist
-		double q = 0.1; // Störungswahrscheinlichkeit
+		int n = 100; // Anzahl Bits
+		double p = 0.4; // Wahrscheinlichkeit, dass Bit 1 ist
+		double q = 0.2; // Störungswahrscheinlichkeit
 		int numberOfBitsRepeated = 3; // Anzahl Wiederholungen pro Bit
-		String message = "HAW Hamburg";
+//		String message = "HAW Hamburg";
 		
 		Sender[] sender = new Sender[loopsize];
 		Channel[] channel = new Channel[loopsize];
@@ -17,9 +17,9 @@ public class DigitalCommunicationSystem {
 		for (int i = 0; i < loopsize; i++) {
 			// Sender
 			sender[i] = new Sender();
-//			boolean[] senderBitsequence = sender[i].source(n, p);
-			String messageAsBinary = sender[i].stringToBinaryString(message);
-			boolean[] senderBitsequence = sender[i].binaryStringToBooleanArray(messageAsBinary);
+			boolean[] senderBitsequence = sender[i].source(n, p);
+//			String messageAsBinary = sender[i].stringToBinaryString(message);
+//			boolean[] senderBitsequence = sender[i].binaryStringToBooleanArray(messageAsBinary);
 			boolean[] encodedSenderBitsequence = sender[i].repeatEncode(senderBitsequence, numberOfBitsRepeated);
 			
 			// Wie sieht die Bit-Sequenz aus?
@@ -46,9 +46,9 @@ public class DigitalCommunicationSystem {
 			// Wie sieht die Bit-Sequenz jetzt aus?
 			System.out.println(Helper.printBits("nach der Dekodierung", decodedChannelBitsequence));
 
-			String booleanArrayAsBinaryString = receiver[i].booleanArrayToBinaryString(decodedChannelBitsequence);
-			String receivedMessage = receiver[i].binaryToString(booleanArrayAsBinaryString);
-			System.out.println("Dekodierte Nachricht:\t" + receivedMessage);
+//			String booleanArrayAsBinaryString = receiver[i].booleanArrayToBinaryString(decodedChannelBitsequence);
+//			String receivedMessage = receiver[i].binaryToString(booleanArrayAsBinaryString);
+//			System.out.println("Dekodierte Nachricht:\t" + receivedMessage);
 
 			double[] drained = receiver[i].drain(decodedChannelBitsequence);
 			System.out.println("Mittelwert: " + drained[0]);
