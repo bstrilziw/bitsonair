@@ -23,8 +23,8 @@ public class Receiver {
 		
 		sigma = Math.sqrt(1/(double)(bitsequence.length-1) * sigma);
 		
-		drain[0] = mu;		
-		drain[1] = sigma;		
+		drain[0] = mu;
+		drain[1] = sigma;
 		return drain;
 	}
 	

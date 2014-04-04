@@ -42,10 +42,10 @@ public class Helper {
 	// gibt die Bit-Folge mit Index aus
 	public static String printBits(String type, boolean[] bitsequence) {
 		StringBuilder print = new StringBuilder();
-		print.append(type + "\n------------\n");
+		print.append(type + " \t");
 		
 		for (int i = 0; i < bitsequence.length; i++) {
-			print.append(i + ": " + bitsequence[i] + "\n");
+			print.append((bitsequence[i]) ? 1 : 0);
 		}
 		
 		return print.toString();

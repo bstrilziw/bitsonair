@@ -31,10 +31,10 @@ public class Sender {
 	
 	// kodiert die Bitsequenz, indem jedes Bit n-mal wiederholt wird
 	public boolean[] repeatEncode(boolean[] bitsequence, int n) {
-		boolean[] encodedBitsequence = new boolean[bitsequence.length * 3];
+		boolean[] encodedBitsequence = new boolean[bitsequence.length * n];
 		
 		for (int i = 0; i < encodedBitsequence.length; i++) {
-			encodedBitsequence[i] = bitsequence[(int)Math.floor(i / 3)];
+			encodedBitsequence[i] = bitsequence[(int)Math.floor(i / n)];
 		}
 		
 		return encodedBitsequence;

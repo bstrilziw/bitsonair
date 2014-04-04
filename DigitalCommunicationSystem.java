@@ -23,8 +23,8 @@ public class DigitalCommunicationSystem {
 			boolean[] encodedSenderBitsequence = sender[i].repeatEncode(senderBitsequence, numberOfBitsRepeated);
 			
 			// Wie sieht die Bit-Sequenz aus?
-//			System.out.println(Helper.printBits("gesendet", senderBitsequence));
-//			System.out.println(Helper.printBits("nach der Kodierung", encodedSenderBitsequence));
+			System.out.println(Helper.printBits("gesendet\t", senderBitsequence));
+			System.out.println(Helper.printBits("nach der Kodierung", encodedSenderBitsequence));
 			
 			// Wie ist die Verteilung?
 //			int[] bitCounter = Helper.countBits(senderBitsequence);
@@ -37,19 +37,20 @@ public class DigitalCommunicationSystem {
 			boolean[] encodedChannelBitsequence = channel[i].noise(encodedSenderBitsequence, q);
 			
 			// Wie sieht die Bit-Sequenz jetzt aus?
-//			System.out.println(Helper.printBits("durch den Kanal", encodedChannelBitsequence));
+			System.out.println(Helper.printBits("durch den Kanal", encodedChannelBitsequence));
 			
 			// Empfänger
 			receiver[i] = new Receiver();
 			boolean[] decodedChannelBitsequence = receiver[i].repeatDecode(encodedChannelBitsequence, numberOfBitsRepeated);
-			double[] drained = receiver[i].drain(decodedChannelBitsequence);
-			String booleanArrayAsBinaryString = receiver[i].booleanArrayToBinaryString(decodedChannelBitsequence);
-			String receivedMessage = receiver[i].binaryToString(booleanArrayAsBinaryString);
-			System.out.println(receivedMessage);
 			
 			// Wie sieht die Bit-Sequenz jetzt aus?
-//			System.out.println(Helper.printBits("nach der Dekodierung", decodedChannelBitsequence));
-			
+			System.out.println(Helper.printBits("nach der Dekodierung", decodedChannelBitsequence));
+
+			String booleanArrayAsBinaryString = receiver[i].booleanArrayToBinaryString(decodedChannelBitsequence);
+			String receivedMessage = receiver[i].binaryToString(booleanArrayAsBinaryString);
+			System.out.println("Dekodierte Nachricht:\t" + receivedMessage);
+
+			double[] drained = receiver[i].drain(decodedChannelBitsequence);
 			System.out.println("Mittelwert: " + drained[0]);
 			System.out.println("Standardabweichung: " + drained[1]);
 			System.out.println("Bitfehlerrate: " + Helper.getBitErrorRate(senderBitsequence, decodedChannelBitsequence));
